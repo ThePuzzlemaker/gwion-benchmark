@@ -9,5 +9,6 @@ chuck: $(chuck --version 2>&1 | head -2 | tail -1 | cut -d " " -f 3-5)
 ruby: $(ruby -v | cut -d" " -f2)
 horse64: $(horse64 --short-version)
 dictu: $(dictu -v)
-vyse: latest 
+vyse: latest
+erlang: $(erl -version)
 EOF

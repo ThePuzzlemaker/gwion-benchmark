@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    
+
     steps:
 
     - uses: actions/checkout@v2
@@ -95,16 +95,30 @@ jobs:
           make
         fi
 
-    - name: Vyse 
+    - name: Vyse
       run: |
         git clone https://github.com/srijan-paul/snap
-        cd snap 
+        cd snap
         git submodule update --init
-        mkdir bin
+        mkdir binecho "deb https://packages.erlang-solutions.com/ubuntu focal contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
         cd bin
         cmake .. -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release
         make
         cp vy vyse
+
+    - uses: actions/cache@v1
+      name: Erlang [ cache ]
+      id: erl
+      with:
+        path: ~/.asdf
+        key: ${{ runner.os }}-erl
+
+    - name: Erlang
+      if: "steps.erl.outputs.cache-hit != 'true'"
+      run: |
+        git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+        ~/.asdf/bin/asdf plugin-add erlang
+        ~/.asdf/bin/asdf install erlang 24.0
 
     - name: Benchmark
       run: |
@@ -120,6 +134,8 @@ jobs:
         export PATH=./Dictu:$PATH
         export PATH=./snap/bin:$PATH
         export PATH=.:$PATH
+        export PATH=runners/:$PATH
+        source ~/.asdf/asdf.sh
         git checkout results
         git pull origin
         echo "info ${{ github.event.client_payload.commit_info }}"

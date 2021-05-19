@@ -1,0 +1,14 @@
+{application, 'method-call',
+ [{description, "Method call (gen_server) benchmark"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {licenses, ["Public Domain"]},
+  {links, []}
+ ]}.
