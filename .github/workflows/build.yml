@@ -100,7 +100,7 @@ jobs:
         git clone https://github.com/srijan-paul/snap
         cd snap
         git submodule update --init
-        mkdir binecho "deb https://packages.erlang-solutions.com/ubuntu focal contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
+        mkdir bin
         cd bin
         cmake .. -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release
         make
