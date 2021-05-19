@@ -3,6 +3,8 @@ name: CI
 on:
   repository_dispatch:
     types: [benchmark-event]
+  push:
+    branches: ["master"]
 
 jobs:
   build:
