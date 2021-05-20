@@ -138,7 +138,7 @@ jobs:
         export PATH=./Dictu:$PATH
         export PATH=./snap/bin:$PATH
         export PATH=.:$PATH
-        export PATH=runners:$PATH
+        export PATH=./runners:$PATH
         source ~/.asdf/asdf.sh
         git checkout results
         git pull origin
