@@ -7,6 +7,10 @@ result_dir="results"
 plot_script="bench.plot"
 : "${repeats:=5}"
 
+echo $PATH
+./runners/erlang src/binary-trees.erl
+erlang src/binary-trees.erl
+
 run_perf() {
   perf stat -r"$repeats" "$1" "$test_dir/$3.$2" 2>&1 | grep "time elapsed" |
     sed 's/ *\([0-9]*\),\([0-9]*\) .* seconds time elapsed *( +- *\([0-9]*\),\([0-9]*\)% )/\1.\2 \3.\4/'
