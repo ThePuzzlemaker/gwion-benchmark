@@ -129,6 +129,8 @@ jobs:
         sudo apt-get install gnuplot chuck
         echo 'chuck --silent $@' > ./chuck
         chmod +x ./chuck
+        chmod +x src/*.erl
+        chmod +x runners/erlang
         export PATH=./wren/bin:$PATH
         export PATH=./lua:$PATH
         export PATH=./mdr:$PATH
@@ -136,7 +138,7 @@ jobs:
         export PATH=./Dictu:$PATH
         export PATH=./snap/bin:$PATH
         export PATH=.:$PATH
-        export PATH=runners/:$PATH
+        export PATH=runners:$PATH
         source ~/.asdf/asdf.sh
         git checkout results
         git pull origin
