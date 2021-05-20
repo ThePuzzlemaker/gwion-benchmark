@@ -124,7 +124,7 @@ jobs:
 
     - name: Erlang [ shim ]
       run: |
-        echo -n "#!/bin/bash\nbash -c \"$1\"" > erlang
+        echo -ne "#!/bin/bash\nbash -c \"$1\"" > erlang
         chmod +x erlang
 
     - name: Benchmark
