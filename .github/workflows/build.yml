@@ -112,17 +112,19 @@ jobs:
       name: Erlang [ cache ]
       id: erl
       with:
-        path: ~/.asdf ./erlang
+        path: ~/.asdf
         key: ${{ runner.os }}-erl
 
-    - name: Erlang
+    - name: Erlang [ install ]
       if: "steps.erl.outputs.cache-hit != 'true'"
       run: |
         git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
         ~/.asdf/bin/asdf plugin-add erlang
         ~/.asdf/bin/asdf install erlang 24.0
-        echo -n "#!/bin/bash\nbash -c \"$1\"" > erlang
+    - name: Erlang [ shim ]
+      run: |
         chmod +x erlang
+        echo -n "#!/bin/bash\nbash -c \"$1\"" > erlang
 
     - name: Benchmark
       run: |
