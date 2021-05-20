@@ -10,5 +10,5 @@ ruby: $(ruby -v | cut -d" " -f2)
 horse64: $(horse64 --short-version)
 dictu: $(dictu -v)
 vyse: latest
-erlang: $(erl -version)
+erlang: $(erl -version 2>&1)
 EOF
