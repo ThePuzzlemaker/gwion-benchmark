@@ -112,7 +112,7 @@ jobs:
       name: Erlang [ cache ]
       id: erl
       with:
-        path: ~/.asdf
+        path: ~/.asdf ./erlang
         key: ${{ runner.os }}-erl
 
     - name: Erlang
