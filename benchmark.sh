@@ -8,7 +8,7 @@ plot_script="bench.plot"
 : "${repeats:=5}"
 
 echo $PATH
-./runners/erlang src/binary-trees.erl
+./erlang src/binary-trees.erl
 erlang src/binary-trees.erl
 
 run_perf() {
